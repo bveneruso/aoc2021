@@ -4,7 +4,7 @@ const util = require('../helpers/util.js');
 let run = async function() {
 	let depth = 0, horizontal = 0;
 
-	await util.readFile(`${__dirname}/p1input.txt`, function(cmd) {
+	(await util.readFile(`${__dirname}/p1input.txt`)).forEach(cmd => {
 
 		let [ dir, amt ] = cmd.split(' ');
 		amt = Number(amt);

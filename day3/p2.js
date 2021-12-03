@@ -7,20 +7,18 @@ const util = require('../helpers/util.js');
  * @returns {string} Most or least common combination of bits
  */
 let findCommonNumber = function(numbers, findMostCommonBit) {
-	let numberOfOnesInIndex = {};
 
-	for(let numb of numbers) {
-		let charIndex = 0;
-		for(let char of numb.split('')) {
-			if(!numberOfOnesInIndex.hasOwnProperty(charIndex))
-				numberOfOnesInIndex[charIndex] = 0;
-			if(char === '1')
-				numberOfOnesInIndex[charIndex]++;
-			charIndex++;
+	let commonString = '';
+
+	for(let charIndex = 0; charIndex < numbers[0].length; charIndex++) {
+		let count = 0;
+		for(let numb of numbers) {
+			if(numb.charAt(charIndex) === '1')
+				count++
 		}
+		commonString += (count >= numbers.length - count) ? '1' : '0';
 	}
 
-	let commonString = Object.values(numberOfOnesInIndex).map(numbOnes => (numbOnes >= numbers.length - numbOnes) ? '1' : '0').join('');
 	return findMostCommonBit ? commonString : inverseBinaryString(commonString);
 }
 
@@ -48,14 +46,10 @@ let filterNumbers = function(numbers, index, findMostCommonBit) {
 }
 
 let run = async function() {
-	let binary = [];
+	let inputNumbers = await util.readFile(`${__dirname}/p2input.txt`);
 
-	await util.readFile(`${__dirname}/p2input.txt`, function(line) {
-		binary.push(line);
-	});
-
-	let bestOx = filterNumbers(binary, 0, true)[0];
-	let bestO2 = filterNumbers(binary, 0, false)[0];
+	let bestOx = filterNumbers(inputNumbers, 0, true)[0];
+	let bestO2 = filterNumbers(inputNumbers, 0, false)[0];
 
 	return parseInt(bestOx, 2) * parseInt(bestO2, 2);
 }

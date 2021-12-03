@@ -7,20 +7,18 @@ const util = require('../helpers/util.js');
  * @returns {string} Most or least common combination of bits
  */
 let findCommonNumber = function(numbers, findMostCommonBit) {
-	let numberOfOnesInIndex = {};
 
-	for(let numb of numbers) {
-		let charIndex = 0;
-		for(let char of numb.split('')) {
-			if(!numberOfOnesInIndex.hasOwnProperty(charIndex))
-				numberOfOnesInIndex[charIndex] = 0;
-			if(char === '1')
-				numberOfOnesInIndex[charIndex]++;
-			charIndex++;
+	let commonString = '';
+
+	for(let charIndex = 0; charIndex < numbers[0].length; charIndex++) {
+		let count = 0;
+		for(let numb of numbers) {
+			if(numb.charAt(charIndex) === '1')
+				count++
 		}
+		commonString += (count >= numbers.length - count) ? '1' : '0';
 	}
 
-	let commonString = Object.values(numberOfOnesInIndex).map(numbOnes => (numbOnes >= numbers.length - numbOnes) ? '1' : '0').join('');
 	return findMostCommonBit ? commonString : inverseBinaryString(commonString);
 }
 
@@ -29,14 +27,9 @@ let inverseBinaryString = function(text) {
 }
 
 let run = async function() {
-	let numbers = [];
-
-	await util.readFile(`${__dirname}/p1input.txt`, function(line) {
-		numbers.push(line);
-	});
-
-	let gamma = findCommonNumber(numbers, true);
-	let epsi = findCommonNumber(numbers, false);
+	let inputNumbers = await util.readFile(`${__dirname}/p1input.txt`);
+	let gamma = findCommonNumber(inputNumbers, true);
+	let epsi = findCommonNumber(inputNumbers, false);
 
 	return parseInt(gamma, 2) * parseInt(epsi, 2);
 }

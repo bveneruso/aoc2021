@@ -5,15 +5,15 @@ const lineReader = require('line-reader');
  * @param callback The callback to run for each line
  * @returns {Promise<unknown>} Resolves when all lines are read
  */
-let readFile = async function(fileName, callback) {
+let readFile = async function(fileName, asNumber = false) {
 	return new Promise(function(resolve, reject) {
+		let file = [];
 		lineReader.eachLine(fileName, function(line) {
-			if(line.trim().length > 0)
-				callback(line.trim());
+			file.push(asNumber ? Number(line.trim()) : line.trim());
 		}, function(err) {
 			if(err)
 				reject(err);
-			resolve();
+			resolve(file);
 		});
 	});
 }
