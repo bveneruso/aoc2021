@@ -1,12 +1,12 @@
 const util = require('../helpers/util.js');
 
-// precondition: no starting fish numb is greater than 6 or has 0 as a numb
-// any starting fish with the same numb will result in spawning the same number of kids
-// therefore, we only need to calculate how many kids each number makes over a time period
-//		we can't simulate it day by day, too slow
-//		other things we can do...
-//		math? is there an equation for this growth?
-//		maybe instead of simulating each fish, we put them in buckets!!!
+/**
+ * High level approach:
+ * 	Instead of simulating each fish individually, we know that every fish with the same number behaves the same way.
+ * 		We can maintain a bucket for each number that contains the count of fish for each number, then iterate
+ * 		through the days.
+ */
+
 const NEW_FISH_DELAY = 8;
 const AFTER_BIRTH_DELAY = 6;
 let simulateADay = function(fishBuckets) {

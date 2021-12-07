@@ -1,14 +1,17 @@
 const util = require('../helpers/util.js');
 
-let costForDistance = {};
+/**
+ * High level approach
+ * 1. Calculate and store the cost to move each distance between 0 and the max distance between 2 crabs
+ * 2. Create an empty map with key being the space number and value being the total fuel cost for all crabs to move to it
+ * 3. For each crab, iterate over each possible destination, adding the fuel cost to get to that destination
+ * 4. Keep track of the minimum fuel cost
+ */
 
+let costForDistance = {};
 let calculateCostForDistances = function(maxDistance) {
 	for(let i = 0; i <= maxDistance; i++) {
 		let cost = 0;
-
-		// if dist is 3 (i = 3)
-		// 0, 0,
-
 		for(let j = 0; j <= i; j++) {
 			cost += j;
 		}
@@ -16,7 +19,7 @@ let calculateCostForDistances = function(maxDistance) {
 	}
 }
 
-// brute force, find dist to each space between min and max, feels icky
+// brute force, find dist to each space between min and max
 let findBestSpace = function(crabs) {
 	crabs.sort((one, two) => one > two ? 1 : -1);
 	let min = crabs[0];
@@ -30,7 +33,6 @@ let findBestSpace = function(crabs) {
 		distToEach[i] = 0;
 	}
 
-	// could be improved via memoization?
 	for(let crab of crabs) {
 		for(let i = min; i <= max; i++) {
 			distToEach[i] += costToSpace(crab, i);
@@ -48,13 +50,6 @@ let findBestSpace = function(crabs) {
 	return target;
 }
 
-// moving 1 step costs 1, 2 steps costs 3, 3 stops costs 6, 4 steps cost 10, 5 steps costs 15
-// 1,3,6,10,15, 21, 28
-// added pattern in comparison to dist
-// 0, 2, 4, 6, 10, 15, 21
-// to calculate total cost for a number of steps, the calculation is
-// it's not linear, it's maybe exponential? but not really? not factorial, not fibonacii
-// we could memoize this cost? but I feel like there must be a good way to calculate it
 let costToSpace = function(crab, target) {
 	return costForDistance[Math.abs(crab - target)];
 }
@@ -69,9 +64,7 @@ let run = async function() {
 	let input = await util.readFile(`${__dirname}/p2input.txt`);
 	let crabs = input[0].split(',').map(x => Number(x));
 	let target = findBestSpace(crabs);
-
 	let fuelUsed = calculateFuelCost(crabs, target);
-	console.log('Moving to ' + target + ' using fuel ' + fuelUsed);
 	return fuelUsed;
 }
 

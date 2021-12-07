@@ -18,6 +18,14 @@ let readFile = async function(fileName, asNumber = false) {
 	});
 }
 
+let range = function(from, to) {
+	let arr = [];
+	for(let i = from; i <= to; i++) {
+		arr.push(i);
+	}
+	return arr;
+}
+
 module.exports = {
 	readFile
 }
