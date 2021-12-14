@@ -18,6 +18,14 @@ const day9p1 = require('./day9/p1.js');
 const day9p2 = require('./day9/p2.js');
 const day10p1 = require('./day10/p1.js');
 const day10p2 = require('./day10/p2.js');
+const day11p1 = require('./day11/p1.js');
+const day11p2 = require('./day11/p2.js');
+const day12p1 = require('./day12/p1.js');
+const day12p2 = require('./day12/p2.js');
+const day13p1 = require('./day13/p1.js');
+const day13p2 = require('./day13/p2.js');
+const day14p1 = require('./day14/p1.js');
+const day14p2 = require('./day14/p2.js');
 
 let run = async function() {
 	// console.log('day1 p1, should be 1655');
@@ -65,20 +73,44 @@ let run = async function() {
 	// console.log('day8 p1 should be 532');
 	// console.log(await day8p1.run());
 
-	console.log('day8 p2 should be 1011284');
-	console.log(await day8p2.run());
+	// console.log('day8 p2 should be 1011284');
+	// console.log(await day8p2.run());
 	//
-	// console.log('day9 p1 should be ?');
+	// console.log('day9 p1 should be 491');
 	// console.log(await day9p1.run());
 	//
-	// console.log('day9 p2 should be ?');
+	// console.log('day9 p2 should be 1075536');
 	// console.log(await day9p2.run());
-	//
-	// console.log('day10 p1 should be ?');
+
+	// console.log('day10 p1 should be 166191');
 	// console.log(await day10p1.run());
 	//
-	// console.log('day10 p2 should be ?');
+	// console.log('day10 p2 should be 1152088313');
 	// console.log(await day10p2.run());
+
+	// console.log('day11 p1 should be 1741');
+	// console.log(await day11p1.run());
+
+	// console.log('day11 p2 should be 440');
+	// console.log(await day11p2.run());
+
+	// console.log('day12 p1 should be 5874');
+	// console.log(await day12p1.run());
+
+	// console.log('day12 p2 should be 153592');
+	// console.log(await day12p2.run());
+
+	// console.log('day13 p1 should be 712');
+	// console.log(await day13p1.run());
+	//
+	console.log('day13 p2 should be 712');
+	console.log(await day13p2.run());
+
+	console.log('day14 p1 should be BLHFJPJF');
+	console.log(await day14p1.run());
+	//
+	// console.log('day14 p2 should be ?');
+	// console.log(await day14p2.run());
 }
 
 run();
