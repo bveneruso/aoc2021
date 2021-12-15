@@ -103,14 +103,14 @@ let run = async function() {
 	// console.log('day13 p1 should be 712');
 	// console.log(await day13p1.run());
 	//
-	console.log('day13 p2 should be 712');
-	console.log(await day13p2.run());
-
-	console.log('day14 p1 should be BLHFJPJF');
-	console.log(await day14p1.run());
+	// console.log('day13 p2 should be BLHFJPJF');
+	// console.log(await day13p2.run());
 	//
-	// console.log('day14 p2 should be ?');
-	// console.log(await day14p2.run());
+	// console.log('day14 p1 should be 2851');
+	// console.log(await day14p1.run());
+
+	console.log('day14 p2 should be 10002813279337');
+	console.log(await day14p2.run());
 }
 
 run();
